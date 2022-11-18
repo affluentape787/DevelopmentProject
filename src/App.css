@@ -28,6 +28,31 @@
   color: #61dafb;
 }
 
+img {
+  width: 14rem; 
+  height: 14rem;
+  object-fit: cover;
+}
+
+#cart {
+  text-align: left;
+  padding: 1%;
+}
+
+#filters {
+  text-align: left;
+  padding: 1%;
+}
+
+#cartTitle {
+  text-align: center;
+  /* position: absolute; */
+}
+
+#total {
+  text-align: center;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
