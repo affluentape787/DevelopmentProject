@@ -2,8 +2,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import { useState } from "react";
 import Container from 'react-bootstrap/Container';
-import Nav from 'react-bootstrap/Nav';
-import Navbar from 'react-bootstrap/Navbar';
 import Snack from "./components/Snack";
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -64,6 +62,7 @@ function App() {
       setSize("all")
     } else if (newFilters.length === 1) {
       setSize(newFilters[0])
+    /* Since each snack is only of one type, if two selections are chosen, no items are shown */
     } else {
       setSize("none")
     }
@@ -71,7 +70,6 @@ function App() {
 
 
   const typeFilter = item => {
-    // all items should be shown when no filter is selected
     if (type === "all") {
       return true
     } else if (type === item.type) {
@@ -82,7 +80,6 @@ function App() {
   };
 
   const sizeFilter = item => {
-    // all items should be shown when no filter is selected
     if (size === "all") {
       return true
     } else if (size === item.size) {
@@ -114,13 +111,12 @@ function App() {
     return 0;
   }
 
+  /* Filter and sort appropriately */
   const filteredData = snackData.filter(typeFilter).filter(sizeFilter).sort((a, b)=>selectSort(a.price, b.price));
 
   return (
     <div className="App">
-
       <h1>Snack Shop</h1>
-
       <div id="filters">
         <Row>
           <Col lg="2"></Col>
