@@ -1,15 +1,28 @@
 # Development
 
 ### Link to Deployed Website
-If you used the stencil code, this is `https://<your GitHub username>.github.io/<name of your repository>`
+This is `https://affluentape787.github.io/DevelopmentProject`
 
 ### Goal and Value of the Application
+The goal of my application is to represent an online snack shop where users can look at and sift through a collection of snacks and add snacks that they want to purchase to their cart (and also remove snacks that they don't want anymore from their cart). The cart contents are visible on the page, and the cart keeps track of the number of each snack as well as a price total, which are important for a typical customer. The user may be craving a specific snack type (i.e. chips, candy, cookies) and can filter by the type of snack they want. They may also be looking for a specific snack size (i.e. individual, family, party) depending on the purpose for purchasing the snacks, so they can also filter by size as well. They may want to sort the snacks from least to most expensive or most to least expensive so there are two sort options for those capabilities as well. To get rid of filters, the user can simply de-select the checkboxes next to each of the filters. 
 
 ### Usability Principles Considered
+1. The filters and sort capabilities are placed at the top and centered on the page so the user can easily see and select the filter/sort that they want when they enter the page, which increases efficiency. 
+2. The filters use checkboxes while the sort uses circular radio buttons since multiple filters can be applied but only one sort function can be used at a time. This matches the user's mental model that multiple checkboxes can be ticked typically but only one circular radio button can be selected at a time. This improves learnability and memorability.
+3. The 'Add to Cart' and 'Remove from Cart' are different colors, and more specifically, the 'Remove from Cart' button is outlined in red to match the user's mental model that red means stop/remove. This improves learnability and memorability.
+4. The cart, which is purposely located toward the top of the screen, reminds users what snacks are actually inside, including the quantity and price of each snack as well as the total cart price. This improves efficiency (since users don't have to scroll down to find the price of a specific snack in their cart, mentally keep track of the quantity of each snack, or calculate how much they need to pay in total) and learnability (since all the important information is shown in the cart). 
 
-### Organization of Components
 
-### How Data is Passed Down Through Components
+### Components and How Data is Passed Down Through Components
+I have a Snack component, which contains important details about each snack, including an image, name, type of snack, size, price, an add to cart button, as well as a remove from cart button. These are laid out in Bootstrap grid fashion on the page of the application (through App.js). 
+
+The Snack component takes in a props parameter which allows me to generically access each Snack's individual details such as the image, name, type of snack, etc and visually display the information. It also helps keep track of the cart (which is represented by an Object). By defining an addToCart function within Snack.js, if the "Add to Cart" button is pressed, I am able to essentially create a new cart where the count of a specific item in the cart is incremented (using the name of the snack as the key) or the item is added to the cart (if the item is not already in there). By defining a removeFromCart function, I am able to create a new cart where the item count is decremented or the item is removed completely (if count = 0). These functions are carried out when the appropriate button is clicked, and this newCart is passed into props.handler (which is the 'setCart' setter function mentioned later), so the cart is updated on the screen where the 'name,' 'price,' and 'count' of each item are accessed/displayed (via properties of the Snack component), as well as a total price. 
+
+Component data is also used for filters and sorts, where the snack item's type, size, and price are accessed and used in order to properly filter/sort the page. (I go into detail below about how exactly that works.) 
 
 ### How the User Triggers State Changes
+The user triggers state changes in many different ways. Starting with the filters, when the user selects/de-selects a certain filter such as one of the snack type filters, the filter is added to/removed from an array state variable called 'typeFilters' that contains all the snack type filters that are selected (this adjustment is made through the setTypeFilters setter function). Then, based on the composition of the 'typeFilters' array, the state variable called 'type' may change. If no type filters are now selected (and thus no filter selections are in 'typeFilters'), then 'type' is set to "all" (through the 'setType' setter function) and all snack types are shown; if one type filter is selected, then 'type' is set to that specific snack type and only snacks of that type are shown; if more than one type filter is selected, type is set to "none" and no snacks are shown since each snack is only of one type. The same process is used for the snack size filter. 
 
+I also use a state variable for the 'sortType' (price ascending or price descending), which utilizes the setter function 'setSortType.' When the user selects a type of sort, the 'sortType' is altered through 'setSortType,' and the appropriate sorting function is used on the (filtered) 'snackData.' 
+
+Finally, when the user clicks 'Add to Cart' or 'Remove from Cart,' the 'cart' state variable is modified through the 'setCart' setter function (passed in as the handler) and updated on the screen.
