@@ -1,7 +1,7 @@
 # Development
 
 ### Link to Deployed Website
-This is the [link] (https://affluentape787.github.io/DevelopmentProject)
+This is the link: https://affluentape787.github.io/DevelopmentProject
 
 ### Goal and Value of the Application
 The goal of my application is to represent an online snack shop where users can look at and sift through a collection of snacks and add snacks that they want to purchase to their cart (and also remove snacks that they don't want anymore from their cart). The cart contents are visible on the page, and the cart keeps track of the number of each snack as well as a price total, which are important for a typical customer. The user may be craving a specific snack type (i.e. chips, candy, cookies) and can filter by the type of snack they want. They may also be looking for a specific snack size (i.e. individual, family, party) depending on the purpose for purchasing the snacks, so they can also filter by size as well. They may want to sort the snacks from least to most expensive or most to least expensive so there are two sort options for those capabilities as well. To get rid of filters, the user can simply de-select the checkboxes next to each of the filters. 
